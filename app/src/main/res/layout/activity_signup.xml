@@ -73,6 +73,15 @@
       android:layout_height="wrap_content"
       android:text="Signup"
       />
+
+    <!-- Login link -->
+    <Button
+      style="@style/Widget.Material3.Button.TextButton"
+      android:id="@+id/loginLink"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="New to app? Create an account"
+      />
   </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
