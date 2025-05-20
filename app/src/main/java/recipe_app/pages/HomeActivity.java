@@ -9,18 +9,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.school.recipeapp.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import recipe_app.adapter.MealAdapter;
 import recipe_app.api.MealApi;
+import recipe_app.api.callbacks.CategoryCallback;
+import recipe_app.api.callbacks.MealCallback;
+import recipe_app.model.Meal;
 
 public class HomeActivity extends AppCompatActivity {
+
     private Context c;
+    private MealApi mealApi;
     private final String TAG = "HomeActivity";
+    private List<Meal> mealList;
+    MealAdapter mealAdapter;
+
     private ChipGroup chipGroup;
 
     @Override
@@ -39,14 +51,30 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void init() {
-        c = HomeActivity.this;
+        // Xml element
+
         chipGroup = findViewById(R.id.chipGroup);
+        RecyclerView mealRecyclerView = findViewById(R.id.mealRecyclerView);
+
+        // Class variable
+
+        c = HomeActivity.this;
+        mealApi = new MealApi(c);
+        mealList = new ArrayList<>();
+        mealAdapter = new MealAdapter(c, mealList);
+        mealRecyclerView.setLayoutManager(new LinearLayoutManager(c));
+        mealRecyclerView.setAdapter(mealAdapter);
+
+
+        // Functions Call
+        fetchMealsByCategory();
 
         renderCategoryChip();
+
     }
 
     private void renderCategoryChip() {
-        new MealApi().fetchCategories(c, new MealApi.CategoryCallback() {
+       mealApi.fetchCategories(new CategoryCallback() {
             @Override
             public void onSuccess(List<String> categories) {
                 runOnUiThread(() -> {
@@ -62,6 +90,22 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onError(Exception e) {
                 Log.e(TAG, "Error fetching categories", e);
+            }
+        });
+    }
+
+    private void fetchMealsByCategory() {
+        mealApi.fetchMealsByCategory("beef", new MealCallback() {
+            @Override
+            public void onSuccess(List<Meal> meals) {
+                mealList.clear();
+                mealList.addAll(meals);
+                mealAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Log.e(TAG, "Error fetching meals", e);
             }
         });
     }

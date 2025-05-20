@@ -59,70 +59,13 @@
   </HorizontalScrollView>
 
   <!-- Recipe Card -->
-  <com.google.android.material.card.MaterialCardView
-    android:id="@+id/card"
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/mealRecyclerView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="20dp"
-  >
-
-    <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="vertical">
-
-      <!-- Media -->
-      <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="194dp"
-        app:srcCompat="@drawable/ic_launcher_background"
-        android:scaleType="centerCrop"
-        android:contentDescription="Recipe Image"
-      />
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
-
-        <!-- Title, secondary and supporting text -->
-        <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Potato Salad"
-          android:textAppearance="?attr/textAppearanceTitleMedium"
-        />
-
-      </LinearLayout>
-
-      <!-- Buttons -->
-      <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:orientation="horizontal">
-
-        <com.google.android.material.button.MaterialButton
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginEnd="8dp"
-          android:text="Favorite"
-          style="?attr/borderlessButtonStyle"
-        />
-
-        <com.google.android.material.button.MaterialButton
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="View"
-          style="?attr/borderlessButtonStyle"
-        />
-
-      </LinearLayout>
-
-    </LinearLayout>
-
-  </com.google.android.material.card.MaterialCardView>
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:padding="16dp"
+  />
 
   <!-- Bottom navigation menu -->
   <LinearLayout
