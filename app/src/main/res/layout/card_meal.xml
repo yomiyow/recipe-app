@@ -39,29 +39,31 @@
 
     </LinearLayout>
 
-<!--      &lt;!&ndash; Buttons &ndash;&gt;-->
-<!--      <LinearLayout-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="8dp"-->
-<!--        android:orientation="horizontal">-->
+      <!-- Buttons -->
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="horizontal">
 
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--          android:layout_width="wrap_content"-->
-<!--          android:layout_height="wrap_content"-->
-<!--          android:layout_marginEnd="8dp"-->
-<!--          android:text="Favorite"-->
-<!--          style="?attr/borderlessButtonStyle"-->
-<!--          />-->
+        <com.google.android.material.button.MaterialButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="8dp"
+          android:text="Favorite"
+          android:layout_weight="1"
+          style="?attr/borderlessButtonStyle"
+          />
 
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--          android:layout_width="wrap_content"-->
-<!--          android:layout_height="wrap_content"-->
-<!--          android:text="View"-->
-<!--          style="?attr/borderlessButtonStyle"-->
-<!--          />-->
+        <com.google.android.material.button.MaterialButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="View"
+          android:layout_weight="1"
+          style="?attr/borderlessButtonStyle"
+          />
 
-<!--      </LinearLayout>-->
+      </LinearLayout>
 
   </LinearLayout>
 
