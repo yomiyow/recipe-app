@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import recipe_app.model.Meal;
+
+import com.bumptech.glide.Glide;
 import com.school.recipeapp.R;
 
 public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder> {
@@ -35,6 +37,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
     @Override
     public void onBindViewHolder(@NonNull MealAdapter.MealViewHolder holder, int position) {
         Meal meal = meals.get(position);
+        Glide.with(context).load(meal.getThumbUrl()).into(holder.mealImage);
         holder.mealName.setText(meal.getName());
     }
 
