@@ -1,48 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+  xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/card"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical"
+  android:layout_height="wrap_content"
+  android:layout_marginBottom="20dp"
   >
-
-  <com.google.android.material.card.MaterialCardView
-    android:id="@+id/card"
+  <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    >
+    android:orientation="vertical">
+
+    <!-- Media -->
+    <ImageView
+      android:id="@+id/mealImage"
+      android:layout_width="match_parent"
+      android:layout_height="194dp"
+      app:srcCompat="@drawable/ic_launcher_background"
+      android:scaleType="centerCrop"
+      android:contentDescription="Recipe Image"
+      />
 
     <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:orientation="vertical">
+      android:orientation="vertical"
+      android:padding="20dp">
 
-      <!-- Media -->
-      <ImageView
-        android:id="@+id/mealImage"
-        android:layout_width="match_parent"
-        android:layout_height="194dp"
-        app:srcCompat="@drawable/ic_launcher_background"
-        android:scaleType="centerCrop"
-        android:contentDescription="Recipe Image"
+      <!-- Title, secondary and supporting text -->
+      <TextView
+        android:id="@+id/mealName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Potato Salad"
+        android:textAppearance="?attr/textAppearanceTitleMedium"
         />
 
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
-
-        <!-- Title, secondary and supporting text -->
-        <TextView
-          android:id="@+id/mealName"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Potato Salad"
-          android:textAppearance="?attr/textAppearanceTitleMedium"
-          />
-
-      </LinearLayout>
+    </LinearLayout>
 
 <!--      &lt;!&ndash; Buttons &ndash;&gt;-->
 <!--      <LinearLayout-->
@@ -68,8 +63,7 @@
 
 <!--      </LinearLayout>-->
 
-    </LinearLayout>
+  </LinearLayout>
 
-  </com.google.android.material.card.MaterialCardView>
+</com.google.android.material.card.MaterialCardView>
 
-</LinearLayout>
