@@ -65,32 +65,10 @@ public class HomeActivity extends AppCompatActivity {
 
         // Functions Call
         renderCategoryChip();
-        fetchMealsByCategory();
     }
 
-    private void renderCategoryChip() {
-       mealApi.fetchCategories(new CategoryCallback() {
-            @Override
-            public void onSuccess(List<String> categories) {
-                runOnUiThread(() -> {
-                    chipGroup.removeAllViews();
-                    for (String category : categories) {
-                        Chip chip = new Chip(c);
-                        chip.setText(category);
-                        chip.setCheckable(true);
-                        chipGroup.addView(chip);
-                    }
-                });
-            }
-            @Override
-            public void onError(Exception e) {
-                Log.e(TAG, "Error fetching categories", e);
-            }
-        });
-    }
-
-    private void fetchMealsByCategory() {
-        mealApi.fetchMealsByCategory("beef", new MealCallback() {
+    private void fetchMealsByCategory(String category) {
+        mealApi.fetchMealsByCategory(category, new MealCallback() {
             @Override
             public void onSuccess(List<Meal> meals) {
                 mealList.clear();
@@ -101,6 +79,35 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onError(Exception e) {
                 Log.e(TAG, "Error fetching meals", e);
+            }
+        });
+    }
+
+    private void renderCategoryChip() {
+       mealApi.fetchCategories(new CategoryCallback() {
+            @Override
+            public void onSuccess(List<String> categories) {
+                runOnUiThread(() -> {
+                    chipGroup.removeAllViews();
+                    for (int i = 0; i < categories.size(); i++) {
+                        String category = categories.get(i);
+                        Chip chip = new Chip(c);
+                        chip.setText(category);
+                        chip.setCheckable(true);
+                        chip.setOnClickListener(v -> fetchMealsByCategory(category));
+                        chipGroup.addView(chip);
+
+                        // select the first chip by default
+                        if (i == 0) {
+                            chip.setChecked(true);
+                            fetchMealsByCategory(category);
+                        }
+                    }
+                });
+            }
+            @Override
+            public void onError(Exception e) {
+                Log.e(TAG, "Error fetching categories", e);
             }
         });
     }
