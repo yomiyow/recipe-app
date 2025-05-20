@@ -52,12 +52,10 @@ public class HomeActivity extends AppCompatActivity {
 
     private void init() {
         // Xml element
-
         chipGroup = findViewById(R.id.chipGroup);
         RecyclerView mealRecyclerView = findViewById(R.id.mealRecyclerView);
 
         // Class variable
-
         c = HomeActivity.this;
         mealApi = new MealApi(c);
         mealList = new ArrayList<>();
@@ -65,12 +63,9 @@ public class HomeActivity extends AppCompatActivity {
         mealRecyclerView.setLayoutManager(new LinearLayoutManager(c));
         mealRecyclerView.setAdapter(mealAdapter);
 
-
         // Functions Call
-        fetchMealsByCategory();
-
         renderCategoryChip();
-
+        fetchMealsByCategory();
     }
 
     private void renderCategoryChip() {
