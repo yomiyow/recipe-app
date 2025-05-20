@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import recipe_app.api.callbacks.CategoryCallback;
-import recipe_app.api.callbacks.MealCallback;
+import recipe_app.api.callbacks.MealsCallback;
 import recipe_app.model.Meal;
 
 public class MealApi {
@@ -67,7 +67,7 @@ public class MealApi {
     }
 
     // Fetch meal base on passed category parameter
-    public void fetchMealsByCategory(String category, MealCallback cb) {
+    public void fetchMealsByCategory(String category, MealsCallback cb) {
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = BASE_URL + "filter.php?c=" + category;
 

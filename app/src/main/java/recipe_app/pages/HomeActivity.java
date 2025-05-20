@@ -22,7 +22,7 @@ import java.util.List;
 import recipe_app.adapter.MealAdapter;
 import recipe_app.api.MealApi;
 import recipe_app.api.callbacks.CategoryCallback;
-import recipe_app.api.callbacks.MealCallback;
+import recipe_app.api.callbacks.MealsCallback;
 import recipe_app.model.Meal;
 
 public class HomeActivity extends AppCompatActivity {
@@ -68,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void fetchMealsByCategory(String category) {
-        mealApi.fetchMealsByCategory(category, new MealCallback() {
+        mealApi.fetchMealsByCategory(category, new MealsCallback() {
             @Override
             public void onSuccess(List<Meal> meals) {
                 mealList.clear();

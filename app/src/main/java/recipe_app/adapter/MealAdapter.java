@@ -39,6 +39,8 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
         Meal meal = meals.get(position);
         Glide.with(context).load(meal.getThumbUrl()).into(holder.mealImage);
         holder.mealName.setText(meal.getName());
+
+
     }
 
     @Override
