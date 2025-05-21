@@ -16,7 +16,6 @@ import java.util.List;
 
 import recipe_app.api.MealApi;
 import recipe_app.api.callbacks.MealCallback;
-import recipe_app.model.FavoriteManager;
 import recipe_app.model.Meal;
 import recipe_app.pages.MealDetailActivity;
 
@@ -46,27 +45,6 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
         Meal meal = meals.get(position);
         Glide.with(context).load(meal.getThumbUrl()).into(mealCard.mealImage);
         mealCard.mealName.setText(meal.getName());
-
-        // Set favorite icon based on favorite state
-        FavoriteManager.isFavorite(meal.getId(), isFav -> {
-            mealCard.favoriteBtn.setIconResource(
-                    isFav ? R.drawable.ic_favorite : R.drawable.ic_outline_favorite
-            );
-            mealCard.favoriteBtn.setTag(isFav); // <-- Add this line
-        });
-
-        mealCard.favoriteBtn.setOnClickListener(v -> {
-            Boolean isFav = (Boolean) mealCard.favoriteBtn.getTag();
-            if (isFav != null && isFav) {
-                FavoriteManager.removeFavorite(meal.getId());
-                mealCard.favoriteBtn.setIconResource(R.drawable.ic_outline_favorite);
-                mealCard.favoriteBtn.setTag(false);
-            } else {
-                FavoriteManager.addFavorite(meal);
-                mealCard.favoriteBtn.setIconResource(R.drawable.ic_favorite);
-                mealCard.favoriteBtn.setTag(true);
-            }
-        });
 
         mealCard.viewBtn.setOnClickListener(v -> {
             // Fetch full information of meal
