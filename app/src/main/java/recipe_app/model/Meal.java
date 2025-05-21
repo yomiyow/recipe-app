@@ -18,6 +18,8 @@ public class Meal implements Parcelable {
     private String youtube;
     private List<String> ingredientList;
 
+    public Meal() {}
+
     public Meal(String id, String name, String thumbUrl) {
         this.id = id;
         this.name = name;
