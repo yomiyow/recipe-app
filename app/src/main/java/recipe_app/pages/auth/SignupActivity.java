@@ -1,4 +1,4 @@
-package recipe_app.auth;
+package recipe_app.pages.auth;
 
 import android.os.Bundle;
 

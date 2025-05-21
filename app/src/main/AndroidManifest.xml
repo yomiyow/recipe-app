@@ -33,7 +33,7 @@
       </intent-filter>
     </activity>
     <activity
-      android:name="recipe_app.auth.SignupActivity"
+      android:name="recipe_app.pages.auth.SignupActivity"
       android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -42,7 +42,7 @@
       </intent-filter>
     </activity>
     <activity
-      android:name="recipe_app.auth.LoginActivity"
+      android:name="recipe_app.pages.auth.LoginActivity"
       android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
