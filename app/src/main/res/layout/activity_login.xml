@@ -51,11 +51,11 @@
         app:boxStrokeWidth="2dp"
     >
       <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/emailField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-      />
+          android:id="@+id/emailField"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="textEmailAddress"
+          />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Password  -->
@@ -72,11 +72,11 @@
         >
 
       <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/passwordField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-      />
+          android:id="@+id/passwordField"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="textPassword"
+          />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Login -->

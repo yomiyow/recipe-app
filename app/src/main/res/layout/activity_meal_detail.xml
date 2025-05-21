@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/main"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  tools:context="recipe_app.pages.MealDetailActivity"
-  android:orientation="vertical"
->
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="recipe_app.pages.MealDetailActivity"
+    android:orientation="vertical"
+    >
 
   <!-- App top bar -->
   <com.google.android.material.appbar.AppBarLayout
@@ -31,12 +31,12 @@
   </com.google.android.material.appbar.AppBarLayout>
 
   <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
-    android:fillViewport="true"
-    android:scrollbars="none"
-    >
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:fillViewport="true"
+      android:scrollbars="none"
+      >
 
     <!-- Meal Recipe -->
     <com.google.android.material.card.MaterialCardView
@@ -57,7 +57,6 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           >
-
         <ImageView
             android:id="@+id/mealThumbIV"
             android:layout_width="match_parent"
@@ -78,7 +77,7 @@
             >
 
           <TextView
-
+              android:id="@+id/mealNameTV"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:paddingLeft="50dp"
@@ -92,14 +91,24 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:text="Country_Name"
+              android:paddingLeft="60dp"
+              android:textSize="20dp"
+              android:textStyle="italic"
+              android:textColor="@color/mint"
+              />
+
+          <TextView
+              android:id="@+id/categoryTV"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Category"
               android:paddingLeft="75dp"
               android:textSize="20dp"
               android:textStyle="italic"
               android:textColor="@color/mint"
               />
         </LinearLayout>
-        </FrameLayout>
-
+      </FrameLayout>
         <!--INFO SECTION-->
         <LinearLayout
             android:layout_width="match_parent"
@@ -120,43 +129,38 @@
               android:textStyle="bold"
               />
 
+        <LinearLayout
+            android:id="@+id/ingredientsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+          <!-- Ingredients title -->
           <TextView
-              android:id="@+id/ingredientsContainer"
               android:layout_width="match_parent"
               android:layout_height="50dp"
-              android:background="@color/white"
-              android:paddingLeft="10dp"
-              android:paddingTop="5dp"
-              android:text="Ingredients_INFO"
-              android:textSize="18dp" />
-
-          <TextView
-              android:layout_width="match_parent"
-              android:layout_height="50dp"
-
               android:textColor="@color/white"
               android:textSize="20dp"
               android:textStyle="bold"
               android:gravity="center"
               android:text="Instructions" />
 
-          <TextView
-              android:id="@+id/instructionsContainer"
-              android:background="@color/white"
-              android:layout_width="match_parent"
-              android:paddingTop="5dp"
-              android:paddingLeft="10dp"
-              android:layout_height="50dp"
-              android:textSize="18dp"
-              android:text="Instructions_INFO"/>
+            <!-- Instructions title -->
+            <LinearLayout
+                android:id="@+id/instructionsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="8dp"
+                >
 
-        </LinearLayout>
+            </LinearLayout>
+          </LinearLayout>
+
       </LinearLayout>
-
-
-
     </com.google.android.material.card.MaterialCardView>
-
-  </ScrollView>
+    </ScrollView>
 
 </LinearLayout>

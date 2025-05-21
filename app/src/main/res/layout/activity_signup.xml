@@ -42,82 +42,69 @@
 
     <!-- Full name  -->
     <com.google.android.material.textfield.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Full name"
+      app:endIconMode="clear_text"
+      android:layout_marginBottom="10dp"
+      >
+      <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/fullNameField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        app:boxBackgroundColor="@color/white"
-        android:textColorHint="@color/charcoal"
-        app:boxStrokeColor="@color/orange"
-        app:boxStrokeWidth="2dp"
-        android:hint="Full name"
-        app:endIconMode="clear_text">
-
-      <com.google.android.material.textfield.TextInputEditText
-          android:id="@+id/fullNameField"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:inputType="text" />
+        android:inputType="text"
+        />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Email  -->
     <com.google.android.material.textfield.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Email"
+      app:endIconMode="clear_text"
+      android:layout_marginBottom="10dp"
+      >
+      <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/emailField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:hint="Email"
-        app:boxBackgroundColor="@color/white"
-        android:textColorHint="@color/charcoal"
-        app:boxStrokeColor="@color/orange"
-        app:boxStrokeWidth="2dp"
-        app:endIconMode="clear_text">
-
-      <com.google.android.material.textfield.TextInputEditText
-          android:id="@+id/emailField"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Password  -->
     <com.google.android.material.textfield.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Password"
+      app:endIconMode="password_toggle"
+      android:layout_marginBottom="20dp"
+      >
+      <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/passwordField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        app:boxBackgroundColor="@color/white"
-        android:textColorHint="@color/charcoal"
-        app:boxStrokeColor="@color/orange"
-        app:boxStrokeWidth="2dp"
-        android:hint="Password"
-        app:endIconMode="password_toggle">
-
-      <com.google.android.material.textfield.TextInputEditText
-          android:id="@+id/passwordField"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:inputType="textPassword" />
+        android:inputType="textPassword"
+        />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Signup -->
+    <Button
+      style="@style/Widget.Material3.Button.IconButton.Filled"
+      android:id="@+id/signupBtn"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Signup"
+      />
 
     <!-- Login link -->
     <Button
-        android:id="@+id/signupBtn"
-        style="@style/Widget.Material3.Button.OutlinedButton"
-        android:textColor="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:backgroundTint="@color/orange"
-        android:text="Sign Up"
-        android:textSize="25dp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/loginLink"
-        style="@style/Widget.Material3.Button.TextButton"
-        android:textColor="@color/charcoal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="New to app? Create an account" />
+      style="@style/Widget.Material3.Button.TextButton"
+      android:id="@+id/loginLink"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="New to app? Create an account"
+      />
   </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
