@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "700949501942",
+    "project_id": "recipe-app-52325",
+    "storage_bucket": "recipe-app-52325.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700949501942:android:07cbfd2e4ba6ad9884d9d7",
+        "android_client_info": {
+          "package_name": "com.school.recipeapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfQKo2jeGkNvqzPjdCrAZQPJvke7IePLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
