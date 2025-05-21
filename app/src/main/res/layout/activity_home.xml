@@ -7,6 +7,7 @@
   android:layout_height="match_parent"
   android:orientation="vertical"
   tools:context="recipe_app.pages.HomeActivity"
+  android:background="@color/orange"
   >
 
   <!-- Search -->
@@ -29,6 +30,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/round_border"
         android:hint="Search"
         />
 
@@ -65,21 +68,21 @@
     android:layout_height="0dp"
     android:layout_weight="1"
     android:padding="16dp"
+    android:background="@color/white"
   />
 
   <!-- Bottom navigation menu -->
   <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+      android:layout_width="match_parent"
     android:layout_height="wrap_content"
   >
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-      android:id="@+id/homeBottomNav"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      app:menu="@menu/bottom_navigation_menu" />
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        app:menu="@menu/bottom_navigation_menu" />
 
   </LinearLayout>
 
