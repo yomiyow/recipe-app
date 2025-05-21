@@ -1,6 +1,7 @@
 package recipe_app.pages;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -12,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.school.recipeapp.R;
@@ -31,7 +33,8 @@ public class HomeActivity extends AppCompatActivity {
     private MealApi mealApi;
     private final String TAG = "HomeActivity";
     private List<Meal> mealList;
-    MealAdapter mealAdapter;
+    private MealAdapter mealAdapter;
+    private BottomNavigationView bottomNavigation;
 
     private ChipGroup chipGroup;
 
@@ -54,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
         // Xml element
         chipGroup = findViewById(R.id.chipGroup);
         RecyclerView mealRecyclerView = findViewById(R.id.mealRecyclerView);
+        bottomNavigation = findViewById(R.id.homeBottomNav);
 
         // Class variable
         c = HomeActivity.this;
@@ -65,6 +69,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // Functions Call
         renderCategoryChip();
+        handleBottomNavClick();
     }
 
     private void fetchMealsByCategory(String category) {
@@ -110,6 +115,22 @@ public class HomeActivity extends AppCompatActivity {
                 Log.e(TAG, "Error fetching categories", e);
             }
         });
+    }
+
+    private void handleBottomNavClick() {
+        bottomNavigation.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.homeNav) {
+                return true;
+            } else if (id == R.id.favoriteNav) {
+                startActivity(new Intent(c, FavoriteActivity.class));
+                finish();
+                return true;
+            }
+            return false;
+        });
+
+        bottomNavigation.setSelectedItemId(R.id.homeNav);
     }
 
 }
