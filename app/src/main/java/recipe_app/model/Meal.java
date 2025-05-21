@@ -46,4 +46,28 @@ public class Meal {
     public String getThumbUrl() {
         return thumbUrl;
     }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public List<String> getInstructionStep() {
+        return instructionStep;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public String getYoutube() {
+        return youtube;
+    }
+
+    public List<String> getIngredientList() {
+        return ingredientList;
+    }
 }
