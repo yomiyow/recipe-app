@@ -1,6 +1,7 @@
 package recipe_app.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import recipe_app.model.Meal;
+import recipe_app.pages.MealDetailActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.button.MaterialButton;
 import com.school.recipeapp.R;
 
 public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder> {
@@ -35,12 +38,16 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MealAdapter.MealViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MealAdapter.MealViewHolder mealCard, int position) {
         Meal meal = meals.get(position);
-        Glide.with(context).load(meal.getThumbUrl()).into(holder.mealImage);
-        holder.mealName.setText(meal.getName());
+        Glide.with(context).load(meal.getThumbUrl()).into(mealCard.mealImage);
+        mealCard.mealName.setText(meal.getName());
 
-
+        mealCard.viewBtn.setOnClickListener(v -> {
+           Intent intent = new Intent(context, MealDetailActivity.class);
+           intent.putExtra("meal", meal);
+           context.startActivity(intent);
+        });
     }
 
     @Override
@@ -52,11 +59,15 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
 
         ImageView mealImage;
         TextView mealName;
+        MaterialButton favoriteBtn;
+        MaterialButton viewBtn;
 
         public MealViewHolder(@NonNull View itemView) {
             super(itemView);
             mealImage = itemView.findViewById(R.id.mealImage);
             mealName = itemView.findViewById(R.id.mealName);
+            favoriteBtn = itemView.findViewById(R.id.favoriteBtn);
+            viewBtn = itemView.findViewById(R.id.viewBtn);
         }
     }
 }
