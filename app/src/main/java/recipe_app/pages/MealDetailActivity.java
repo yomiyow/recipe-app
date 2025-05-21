@@ -16,6 +16,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.divider.MaterialDivider;
 import com.google.android.material.textview.MaterialTextView;
 import com.school.recipeapp.R;
@@ -44,7 +46,13 @@ public class MealDetailActivity extends AppCompatActivity {
     private void init() {
         c = MealDetailActivity.this;
 
+        handleReturnHome();
         renderMealDetails();
+    }
+
+    private void handleReturnHome() {
+        MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
+        topAppBar.setNavigationOnClickListener(v -> finish());
     }
 
     private void renderMealDetails() {
@@ -164,5 +172,6 @@ public class MealDetailActivity extends AppCompatActivity {
             }
         }
     }
+
 
 }
