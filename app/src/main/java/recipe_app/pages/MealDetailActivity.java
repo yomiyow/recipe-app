@@ -1,13 +1,13 @@
 package recipe_app.pages;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,17 +16,24 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.divider.MaterialDivider;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.firebase.database.FirebaseDatabase;
 import com.school.recipeapp.R;
 
+import recipe_app.api.callbacks.FavoriteCallback;
+import recipe_app.model.FavoriteManager;
 import recipe_app.model.Meal;
 
 public class MealDetailActivity extends AppCompatActivity {
 
     private Context c;
+    private FirebaseDatabase db;
+    private Meal meal;
+    private boolean isFavorite = false;
+    private MaterialToolbar topToolBar;
+    private MenuItem favoriteMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,19 +47,37 @@ public class MealDetailActivity extends AppCompatActivity {
         });
 
         init();
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.top_app_bar, menu);
+        favoriteMenuItem = menu.findItem(R.id.favorite);
+        updateFavoriteIcon();
+        return true;
     }
 
     private void init() {
         c = MealDetailActivity.this;
+        db = FirebaseDatabase.getInstance();
+        topToolBar = findViewById(R.id.topToolBar);
+        setSupportActionBar(topToolBar);
 
         handleReturnHome();
         renderMealDetails();
+        handleFavoriteClick();
+
+        FavoriteManager.isFavorite(meal.getId(), new FavoriteCallback() {
+            @Override
+            public void onResult(boolean isFav) {
+                isFavorite = isFav;
+                runOnUiThread(() -> updateFavoriteIcon()); // Ensure icon updates when Firebase returns
+            }
+        });
     }
 
     private void handleReturnHome() {
-        MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
-        topAppBar.setNavigationOnClickListener(v -> finish());
+        topToolBar.setNavigationOnClickListener(v -> finish());
     }
 
     private void renderMealDetails() {
@@ -61,7 +86,7 @@ public class MealDetailActivity extends AppCompatActivity {
         TextView categoryTV = findViewById(R.id.categoryTV);
         TextView mealNameTV = findViewById(R.id.mealNameTV);
 
-        Meal meal = getIntent().getParcelableExtra("meal");
+        meal = getIntent().getParcelableExtra("meal");
 
         Glide.with(c).load(meal.getThumbUrl()).into(mealThumbIV);
         countryTV.setText(meal.getCountry());
@@ -173,5 +198,32 @@ public class MealDetailActivity extends AppCompatActivity {
         }
     }
 
+    private void handleFavoriteClick() {
+        topToolBar.setOnMenuItemClickListener(menuItem -> {
+            if (menuItem.getItemId() == R.id.favorite) {
+                if (isFavorite) {
+                    FavoriteManager.removeFavorite(meal.getId());
+                    isFavorite = false;
+                    Toast.makeText(c, "Removed from Favorite", Toast.LENGTH_SHORT).show();
+                } else {
+                    FavoriteManager.addFavorite(meal);
+                    isFavorite = true;
+                    Toast.makeText(c, "Added to Favorite", Toast.LENGTH_SHORT).show();
+                }
+                updateFavoriteIcon(); // immediately reflects icon
+                return true;
+            }
+            return false;
+        });
+    }
+
+    private void updateFavoriteIcon() {
+        if (favoriteMenuItem != null) {
+            favoriteMenuItem.setIcon(isFavorite
+                    ? R.drawable.ic_favorite
+                    : R.drawable.ic_outline_favorite
+            );
+        }
+    }
 
 }
