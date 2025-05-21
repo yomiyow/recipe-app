@@ -16,6 +16,28 @@
     android:gravity="center"
     android:padding="20dp"
   >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="75dp"
+          android:layout_marginBottom="25dp"
+          android:fontFamily="sans-serif-black"
+          android:gravity="center"
+          android:text="DishKeep"
+          android:textColor="@color/orange"
+          android:textSize="50dp"
+          android:textStyle="bold" />
+
+      <!--Logo dito cguro-->
+
+    </LinearLayout>
+
     <!-- Email  -->
     <com.google.android.material.textfield.TextInputLayout
       android:layout_width="match_parent"
@@ -23,6 +45,10 @@
       android:hint="Email"
       app:endIconMode="clear_text"
       android:layout_marginBottom="10dp"
+        app:boxBackgroundColor="@color/white"
+        android:textColorHint="@color/charcoal"
+        app:boxStrokeColor="@color/orange"
+        app:boxStrokeWidth="2dp"
     >
       <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/emailField"
@@ -39,7 +65,12 @@
       android:hint="Password"
       app:endIconMode="password_toggle"
       android:layout_marginBottom="20dp"
-    >
+        app:boxBackgroundColor="@color/white"
+        android:textColorHint="@color/charcoal"
+        app:boxStrokeColor="@color/orange"
+        app:boxStrokeWidth="2dp"
+        >
+
       <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/passwordField"
         android:layout_width="match_parent"
@@ -50,10 +81,14 @@
 
     <!-- Login -->
     <Button
-      style="@style/Widget.Material3.Button.IconButton.Filled"
       android:id="@+id/loginBtn"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/orange"
+        android:textSize="25dp"
+        android:textStyle="bold"
       android:text="Login"
     />
 
@@ -61,8 +96,9 @@
     <Button
       style="@style/Widget.Material3.Button.TextButton"
       android:id="@+id/signupLink"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+        android:textColor="@color/charcoal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
       android:text="Have an account? Login here"
       />
   </LinearLayout>
