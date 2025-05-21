@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.school.recipeapp.R;
@@ -35,6 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     private List<Meal> mealList;
     private MealAdapter mealAdapter;
     private BottomNavigationView bottomNavigation;
+    MaterialButton favoriteBtn;
 
     private ChipGroup chipGroup;
 
@@ -50,7 +54,12 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         init();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mealAdapter.notifyDataSetChanged();
     }
 
     private void init() {
@@ -58,6 +67,7 @@ public class HomeActivity extends AppCompatActivity {
         chipGroup = findViewById(R.id.chipGroup);
         RecyclerView mealRecyclerView = findViewById(R.id.mealRecyclerView);
         bottomNavigation = findViewById(R.id.homeBottomNav);
+        favoriteBtn = findViewById(R.id.favoriteBtn);
 
         // Class variable
         c = HomeActivity.this;
