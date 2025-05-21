@@ -118,4 +118,18 @@ public class Meal implements Parcelable {
         return ingredientList;
     }
 
+    @Override
+    public String toString() {
+        return "Meal{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", thumbUrl='" + thumbUrl + '\'' +
+                ", category='" + category + '\'' +
+                ", country='" + country + '\'' +
+                ", instructionStep=" + instructionStep +
+                ", tags='" + tags + '\'' +
+                ", youtube='" + youtube + '\'' +
+                ", ingredientList=" + ingredientList +
+                '}';
+    }
 }

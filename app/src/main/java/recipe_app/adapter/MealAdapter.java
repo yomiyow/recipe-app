@@ -2,6 +2,7 @@ package recipe_app.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import recipe_app.api.MealApi;
+import recipe_app.api.callbacks.MealCallback;
 import recipe_app.model.Meal;
 import recipe_app.pages.MealDetailActivity;
 
@@ -44,10 +47,21 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
         mealCard.mealName.setText(meal.getName());
 
         mealCard.viewBtn.setOnClickListener(v -> {
-           Intent intent = new Intent(context, MealDetailActivity.class);
-           intent.putExtra("meal", meal);
-           context.startActivity(intent);
+            // Fetch full information of meal
+            new MealApi(context).fetchMeal(meal.getId(), new MealCallback() {
+                @Override
+                public void onSuccess(Meal meal) {
+                   Intent intent = new Intent(context, MealDetailActivity.class);
+                   intent.putExtra("meal", meal);
+                   context.startActivity(intent);
+                }
+                @Override
+                public void onError(Exception e) {
+                    Log.e("MealAdapter", "Error fetching meal", e);
+                }
+            });
         });
+
     }
 
     @Override

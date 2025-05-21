@@ -26,140 +26,156 @@
 
   </com.google.android.material.appbar.AppBarLayout>
 
-  <!-- Meal Recipe -->
-  <com.google.android.material.card.MaterialCardView
-    android:id="@+id/card"
+  <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="20dp"
-    app:strokeWidth="0dp"
-    app:shapeAppearance="?attr/shapeAppearance"
-  >
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:fillViewport="true"
+    android:scrollbars="none"
+    >
 
-    <LinearLayout
+    <!-- Meal Recipe -->
+    <com.google.android.material.card.MaterialCardView
+      android:id="@+id/card"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:orientation="vertical">
+      android:layout_margin="20dp"
+      app:strokeWidth="0dp"
+      app:shapeAppearance="?attr/shapeAppearance"
 
-      <!-- Media -->
-      <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:srcCompat="@drawable/ic_launcher_background"
-        android:scaleType="centerCrop"
-        android:contentDescription="Meal Image"
-        android:layout_marginBottom="20dp"
-      />
+    >
 
-      <!-- Country & Category -->
       <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-      >
-        <!-- Country -->
+        android:orientation="vertical">
+
+        <!-- Media -->
+        <ImageView
+          android:id="@+id/mealThumbIV"
+          android:layout_width="match_parent"
+          android:layout_height="300dp"
+          app:srcCompat="@drawable/ic_launcher_background"
+          android:scaleType="centerCrop"
+          android:contentDescription="Meal Image"
+          android:layout_marginBottom="20dp"
+        />
+
+        <!-- Country & Category -->
         <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:layout_weight="1"
-          android:gravity="center">
-
-          <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Country"
-          />
-
-          <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="British"
-            android:padding="8dp"
-          />
-
-        </LinearLayout>
-
-        <!-- Category -->
-        <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:layout_weight="1"
-          android:gravity="center"
-        >
-
-          <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Category"
-          />
-
-          <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Beef"
-          />
-
-        </LinearLayout>
-
-      </LinearLayout>
-
-      <LinearLayout
+          android:orientation="horizontal"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:padding="16dp"
-      >
+        >
+          <!-- Country -->
+          <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Country"
+            />
+
+            <TextView
+              android:id="@+id/countryTV"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:padding="8dp"
+            />
+
+          </LinearLayout>
+
+          <!-- Category -->
+          <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+          >
+
+            <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Category"
+            />
+
+            <TextView
+              android:id="@+id/categoryTV"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:padding="8dp"
+            />
+
+          </LinearLayout>
+
+        </LinearLayout>
 
         <!-- Meal name -->
         <TextView
+          android:id="@+id/mealNameTV"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="Roasted Beef"
           android:textAppearance="?attr/textAppearanceTitleLarge"
         />
 
-        <!-- Ingredients title -->
-        <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Ingredients"
-          android:textAppearance="?attr/textAppearanceTitleMedium"
-        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+        >
 
-        <!-- Ingredients (bulleted) -->
-        <TextView
-          android:id="@+id/textIngredients"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="• Ingredient 1\n• Ingredient 2\n• Ingredient 3"
-          android:textAppearance="?attr/textAppearanceBodyLarge"
-          android:paddingTop="8dp"
-        />
-
-        <!-- Instructions title -->
-        <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Instructions"
-          android:textAppearance="?attr/textAppearanceTitleMedium"
+          <!-- Ingredients title -->
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ingredients"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
           />
 
-        <!-- Instructions (bulleted) -->
-        <TextView
-          android:id="@+id/textInstructions"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="• Step 1\n• Step 2\n• Step 3"
-          android:textAppearance="?attr/textAppearanceBodyLarge"
-          android:paddingTop="8dp"
-        />
+          <!-- Ingredients container -->
+          <LinearLayout
+            android:id="@+id/ingredientsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Ingredients are dynamically created -->
+
+          </LinearLayout>
+
+          <!-- Instructions title -->
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Instructions"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+          />
+
+          <!-- Instructions container -->
+          <LinearLayout
+            android:id="@+id/instructionsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="8dp"
+          >
+
+            <!-- Instructions are dynamically created -->
+
+          </LinearLayout>
+
+        </LinearLayout>
 
       </LinearLayout>
 
-    </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-  </com.google.android.material.card.MaterialCardView>
+  </ScrollView>
 
 </LinearLayout>

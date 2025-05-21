@@ -113,7 +113,7 @@ public class MealApi {
     // Fetch single meal base on mealId
     public void fetchMeal(String mealId, MealCallback cb) {
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = BASE_URL + "lookup.php?i" + mealId;
+        String url = BASE_URL + "lookup.php?i=" + mealId;
 
         JsonObjectRequest req = new JsonObjectRequest(
                 Request.Method.GET,
