@@ -45,6 +45,10 @@ public class FavoriteActivity extends AppCompatActivity {
         init();
 
     }
+    protected void onResume() {
+        super.onResume();
+        renderFavoriteMeals();
+    }
 
     private void init() {
         c = FavoriteActivity.this;

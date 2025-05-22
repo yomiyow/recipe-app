@@ -53,6 +53,13 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        // refresh the state of meal card
+        super.onResume();
+        mealAdapter.notifyDataSetChanged();
+    }
+
     private void init() {
         // Xml element
         chipGroup = findViewById(R.id.chipGroup);
