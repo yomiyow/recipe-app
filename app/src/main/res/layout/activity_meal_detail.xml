@@ -21,9 +21,9 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:minHeight="?attr/actionBarSize"
-        app:titleTextColor="@color/white"
-        app:navigationIconTint="@color/white"
-      app:title="Title"
+      app:titleTextColor="@color/white"
+      app:navigationIconTint="@color/white"
+      app:title="DishKeep"
       app:menu="@menu/top_app_bar"
       app:navigationIcon="@drawable/ic_arrow_back"
     />
