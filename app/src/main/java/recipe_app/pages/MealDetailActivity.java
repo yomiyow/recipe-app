@@ -25,6 +25,7 @@ import com.school.recipeapp.R;
 import recipe_app.api.callbacks.FavoriteCallback;
 import recipe_app.model.FavoriteManager;
 import recipe_app.model.Meal;
+import recipe_app.utils.ToastUtil;
 
 public class MealDetailActivity extends AppCompatActivity {
 
@@ -204,13 +205,13 @@ public class MealDetailActivity extends AppCompatActivity {
                 if (isFavorite) {
                     FavoriteManager.removeFavorite(meal.getId());
                     isFavorite = false;
-                    Toast.makeText(c, "Removed from Favorite", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(c, "Removed from Favorite", Toast.LENGTH_SHORT);
                 } else {
                     FavoriteManager.addFavorite(meal);
                     isFavorite = true;
-                    Toast.makeText(c, "Added to Favorite", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(c, "Added to Favorite", Toast.LENGTH_SHORT);
                 }
-                updateFavoriteIcon(); // immediately reflects icon
+                updateFavoriteIcon();
                 return true;
             }
             return false;

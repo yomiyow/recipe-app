@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.school.recipeapp.R;
 
 import recipe_app.pages.HomeActivity;
+import recipe_app.utils.ToastUtil;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -83,11 +84,10 @@ public class LoginActivity extends AppCompatActivity {
                         handleNavToHome();
                         finish();
                     } else {
-                        // Email not verified
-                        Toast.makeText(c, "Login failed. User not found.", Toast.LENGTH_LONG).show();
+                        ToastUtil.showToast(c, "Login failed. User not found.", Toast.LENGTH_LONG);
                     }
                 } else {
-                    Toast.makeText(c, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(c, "Login failed: Invalid Credentials", Toast.LENGTH_LONG);
                 }
             });
     }
