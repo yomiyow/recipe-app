@@ -10,4 +10,9 @@
     android:enabled="true"
     android:icon="@drawable/ic_favorite"
     android:title="Favorite"/>
+  <item
+    android:id="@+id/logoutNav"
+    android:enabled="true"
+    android:icon="@drawable/ic_logout"
+    android:title="Logout"/>
 </menu>

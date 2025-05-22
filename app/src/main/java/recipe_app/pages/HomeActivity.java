@@ -30,6 +30,7 @@ import recipe_app.api.MealApi;
 import recipe_app.api.callbacks.CategoryCallback;
 import recipe_app.api.callbacks.MealsCallback;
 import recipe_app.model.Meal;
+import recipe_app.pages.auth.LoginActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -170,6 +171,11 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             } else if (id == R.id.favoriteNav) {
                 startActivity(new Intent(c, FavoriteActivity.class));
+                finish();
+                return true;
+            } else if (id == R.id.logoutNav) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(c, LoginActivity.class));
                 finish();
                 return true;
             }

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.school.recipeapp.R;
 
 import java.util.List;
@@ -23,6 +24,7 @@ import recipe_app.adapter.MealAdapter;
 import recipe_app.api.callbacks.MealsCallback;
 import recipe_app.model.FavoriteManager;
 import recipe_app.model.Meal;
+import recipe_app.pages.auth.LoginActivity;
 
 public class FavoriteActivity extends AppCompatActivity {
 
@@ -74,6 +76,11 @@ public class FavoriteActivity extends AppCompatActivity {
                 finish();
                 return true;
             } else if (id == R.id.favoriteNav) {
+                return true;
+            } else if (id == R.id.logoutNav) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(c, LoginActivity.class));
+                finish();
                 return true;
             }
             return false;
