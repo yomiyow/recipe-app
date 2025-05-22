@@ -3,6 +3,8 @@ package recipe_app.pages;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +30,7 @@ public class FavoriteActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigation;
 
     private RecyclerView favoriteMealRV;
+    private LinearLayout emptyView;
     private MealAdapter mealAdapter;
     private List<Meal> favoriteMeals;
 
@@ -53,6 +56,7 @@ public class FavoriteActivity extends AppCompatActivity {
     private void init() {
         c = FavoriteActivity.this;
         bottomNavigation = findViewById(R.id.bottomNav);
+        emptyView = findViewById(R.id.emptyView);
 
         // RecyclerView
         favoriteMealRV = findViewById(R.id.favoriteMealRecyclerView);
@@ -84,6 +88,9 @@ public class FavoriteActivity extends AppCompatActivity {
             @Override
             public void onSuccess(List<Meal> meals) {
                 favoriteMeals = meals;
+
+                updateView();
+
                 mealAdapter = new MealAdapter(c, favoriteMeals, true);
                 favoriteMealRV.setAdapter(mealAdapter);
             }
@@ -92,5 +99,16 @@ public class FavoriteActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void updateView() {
+        // check what view to render
+        if (favoriteMeals.isEmpty()) {
+            favoriteMealRV.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+        } else {
+            favoriteMealRV.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
+        }
     }
 }

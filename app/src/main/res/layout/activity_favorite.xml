@@ -9,6 +9,14 @@
   android:orientation="vertical"
   >
 
+  <!-- Empty View -->
+  <include
+    layout="@layout/empty_view_favorite"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"/>
+
   <!-- Favorite Recycler view -->
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/favoriteMealRecyclerView"

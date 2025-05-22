@@ -18,6 +18,7 @@ import recipe_app.api.MealApi;
 import recipe_app.api.callbacks.MealCallback;
 import recipe_app.model.FavoriteManager;
 import recipe_app.model.Meal;
+import recipe_app.pages.FavoriteActivity;
 import recipe_app.pages.MealDetailActivity;
 
 import com.bumptech.glide.Glide;
@@ -70,6 +71,9 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
                 FavoriteManager.removeFavorite(meal.getId());
                 if (isFavoritesOnly) {
                     removeMeal(adapterPosition);
+                    if (meals.isEmpty() && context instanceof FavoriteActivity) {
+                        ((FavoriteActivity) context).updateView();
+                    }
                 } else {
                     mealCard.favoriteBtn.setIconResource(R.drawable.ic_outline_favorite);
                     mealCard.favoriteBtn.setTag(false);

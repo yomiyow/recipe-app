@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/emptyView"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:gravity="center"
+  android:orientation="vertical"
+  android:padding="32dp"
+  android:background="@android:color/white">
+
+  <TextView
+    android:id="@+id/empty_title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="🍽️ Nothing’s Cooking Yet!"
+    android:textSize="22sp"
+    android:textStyle="bold"
+    android:textColor="@color/black"
+    android:gravity="center"
+    android:layout_marginBottom="8dp" />
+
+  <TextView
+    android:id="@+id/empty_subtitle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Your favorites list is empty..."
+    android:textSize="16sp"
+    android:textColor="@color/black"
+    android:gravity="center"
+    android:layout_marginBottom="16dp" />
+
+  <TextView
+    android:id="@+id/empty_description"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Start exploring delicious recipes and tap the ❤️ to add your favorites.\nThey’ll show up here for easy access anytime you're hungry for inspiration!"
+    android:textSize="15sp"
+    android:textColor="@color/black"
+    android:gravity="center" />
+
+</LinearLayout>
