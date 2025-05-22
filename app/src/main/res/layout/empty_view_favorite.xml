@@ -19,7 +19,7 @@
     android:textStyle="bold"
     android:textColor="@color/black"
     android:gravity="center"
-    android:layout_marginBottom="8dp" />
+    android:layout_marginBottom="20dp" />
 
   <TextView
     android:id="@+id/empty_subtitle"
@@ -38,6 +38,8 @@
     android:text="Start exploring delicious recipes and tap the ❤️ to add your favorites.\nThey’ll show up here for easy access anytime you're hungry for inspiration!"
     android:textSize="15sp"
     android:textColor="@color/black"
-    android:gravity="center" />
+    android:gravity="center"
+    android:lineHeight="25sp"
+  />
 
 </LinearLayout>
