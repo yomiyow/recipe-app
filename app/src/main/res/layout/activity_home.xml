@@ -72,18 +72,12 @@
   />
 
   <!-- Bottom navigation menu -->
-  <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-  >
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/homeBottomNav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/orange"
-        app:menu="@menu/bottom_navigation_menu" />
-
-  </LinearLayout>
+  <com.google.android.material.bottomnavigation.BottomNavigationView
+      android:id="@+id/homeBottomNav"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/orange"
+      app:menu="@menu/bottom_navigation_menu" />
 
 </LinearLayout>

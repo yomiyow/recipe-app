@@ -13,7 +13,9 @@
   <include
     layout="@layout/empty_view_favorite"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    />
 
   <!-- Favorite Recycler view -->
   <androidx.recyclerview.widget.RecyclerView
@@ -26,22 +28,12 @@
   />
 
   <!-- Bottom navigation menu -->
-  <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+  <com.google.android.material.bottomnavigation.BottomNavigationView
+    android:id="@+id/bottomNav"
     android:layout_width="match_parent"
+    android:background="@color/orange"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    app:layout_constraintBottom_toBottomOf="parent"
-    >
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-      android:id="@+id/bottomNav"
-      android:layout_width="match_parent"
-      android:background="@color/orange"
-      android:layout_height="wrap_content"
-      app:menu="@menu/bottom_navigation_menu" />
-
-  </LinearLayout>
+    app:menu="@menu/bottom_navigation_menu"
+  />
 
 </LinearLayout>
