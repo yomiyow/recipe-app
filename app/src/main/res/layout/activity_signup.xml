@@ -94,6 +94,8 @@
       android:id="@+id/signupBtn"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:backgroundTint="@color/orange"
+      android:textStyle="bold"
       android:text="Signup"
       />
 
@@ -103,6 +105,7 @@
       android:id="@+id/loginLink"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:textColor="@color/orange"
       android:text="New to app? Create an account"
       />
   </LinearLayout>
