@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.school.recipeapp.R;
@@ -174,9 +175,7 @@ public class HomeActivity extends AppCompatActivity {
                 finish();
                 return true;
             } else if (id == R.id.logoutNav) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(c, LoginActivity.class));
-                finish();
+                handleLogout();
                 return true;
             }
             return false;
@@ -197,6 +196,20 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
         mealAdapter.notifyDataSetChanged();
+    }
+
+    private void handleLogout() {
+        new MaterialAlertDialogBuilder(c)
+            .setTitle("Logout Confirmation")
+            .setMessage("Are you sure you want to logout?")
+            .setCancelable(false)
+            .setPositiveButton("Logout", (dialog, which) -> {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(c, LoginActivity.class));
+                finish();
+            })
+            .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+            .show();
     }
 
 }

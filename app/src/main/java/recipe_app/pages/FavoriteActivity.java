@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.school.recipeapp.R;
 
@@ -50,6 +51,7 @@ public class FavoriteActivity extends AppCompatActivity {
         init();
 
     }
+
     protected void onResume() {
         super.onResume();
         renderFavoriteMeals();
@@ -78,9 +80,7 @@ public class FavoriteActivity extends AppCompatActivity {
             } else if (id == R.id.favoriteNav) {
                 return true;
             } else if (id == R.id.logoutNav) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(c, LoginActivity.class));
-                finish();
+                handleLogout();
                 return true;
             }
             return false;
@@ -101,6 +101,7 @@ public class FavoriteActivity extends AppCompatActivity {
                 mealAdapter = new MealAdapter(c, favoriteMeals, true);
                 favoriteMealRV.setAdapter(mealAdapter);
             }
+
             @Override
             public void onError(Exception e) {
 
@@ -117,5 +118,19 @@ public class FavoriteActivity extends AppCompatActivity {
             favoriteMealRV.setVisibility(View.VISIBLE);
             emptyView.setVisibility(View.GONE);
         }
+    }
+
+    private void handleLogout() {
+        new MaterialAlertDialogBuilder(c)
+            .setTitle("Logout Confirmation")
+            .setMessage("Are you sure you want to logout?")
+            .setCancelable(false)
+            .setPositiveButton("Logout", (dialog, which) -> {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(c, LoginActivity.class));
+                finish();
+            })
+            .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+            .show();
     }
 }
