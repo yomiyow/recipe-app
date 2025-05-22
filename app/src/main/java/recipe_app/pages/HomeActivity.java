@@ -3,6 +3,8 @@ package recipe_app.pages;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
@@ -16,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
 import com.school.recipeapp.R;
 
 import java.util.ArrayList;
@@ -35,6 +39,8 @@ public class HomeActivity extends AppCompatActivity {
     private List<Meal> mealList;
     private MealAdapter mealAdapter;
     private BottomNavigationView bottomNavigation;
+    private TextInputEditText searchET;
+    private List<Meal> searchedMeals;
 
     private ChipGroup chipGroup;
 
@@ -61,15 +67,17 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void init() {
-        // Xml element
+        // UI element
         chipGroup = findViewById(R.id.chipGroup);
         RecyclerView mealRecyclerView = findViewById(R.id.mealRecyclerView);
         bottomNavigation = findViewById(R.id.homeBottomNav);
+        searchET = findViewById(R.id.searchField);
 
         // Class variable
         c = HomeActivity.this;
         mealApi = new MealApi(c);
         mealList = new ArrayList<>();
+        searchedMeals = new ArrayList<>();
         mealAdapter = new MealAdapter(c, mealList);
         mealRecyclerView.setLayoutManager(new LinearLayoutManager(c));
         mealRecyclerView.setAdapter(mealAdapter);
@@ -77,26 +85,12 @@ public class HomeActivity extends AppCompatActivity {
         // Functions Call
         renderCategoryChip();
         handleBottomNavClick();
-    }
+        handleSearch();
 
-    private void fetchMealsByCategory(String category) {
-        mealApi.fetchMealsByCategory(category, new MealsCallback() {
-            @Override
-            public void onSuccess(List<Meal> meals) {
-                mealList.clear();
-                mealList.addAll(meals);
-                mealAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onError(Exception e) {
-                Log.e(TAG, "Error fetching meals", e);
-            }
-        });
     }
 
     private void renderCategoryChip() {
-       mealApi.fetchCategories(new CategoryCallback() {
+        mealApi.fetchCategories(new CategoryCallback() {
             @Override
             public void onSuccess(List<String> categories) {
                 runOnUiThread(() -> {
@@ -106,7 +100,9 @@ public class HomeActivity extends AppCompatActivity {
                         Chip chip = new Chip(c);
                         chip.setText(category);
                         chip.setCheckable(true);
-                        chip.setOnClickListener(v -> fetchMealsByCategory(category));
+                        chip.setOnClickListener(v -> {
+                            fetchMealsByCategory(category);
+                        });
                         chipGroup.addView(chip);
 
                         // select the first chip by default
@@ -124,6 +120,49 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    private void fetchMealsByCategory(String category) {
+        mealApi.fetchMealsByCategory(category, new MealsCallback() {
+            @Override
+            public void onSuccess(List<Meal> meals) {
+                searchedMeals.clear();
+                searchedMeals.addAll(meals);
+                String keyword = searchET.getText().toString().toLowerCase().trim();
+
+                mealList.clear();
+                if (keyword.isEmpty()) {
+                    mealList.addAll(meals);
+                } else {
+                    for (Meal meal : meals) {
+                        if (meal.getName().toLowerCase().contains(keyword)) {
+                            mealList.add(meal);
+                        }
+                    }
+                }
+                mealAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Log.e(TAG, "Error fetching meals", e);
+            }
+        });
+    }
+
+    private void handleSearch() {
+        searchET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterMeals(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+    };
+
     private void handleBottomNavClick() {
         bottomNavigation.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
@@ -138,6 +177,20 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         bottomNavigation.setSelectedItemId(R.id.homeNav);
+    }
+
+    private void filterMeals(String query) {
+        mealList.clear();
+        if (query.isEmpty()) {
+            mealList.addAll(searchedMeals);
+        } else {
+            for (Meal meal : searchedMeals) {
+                if (meal.getName().toLowerCase().contains(query.toLowerCase())) {
+                    mealList.add(meal);
+                }
+            }
+        }
+        mealAdapter.notifyDataSetChanged();
     }
 
 }
