@@ -28,10 +28,17 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
 
     private final Context context;
     private final List<Meal> meals;
+    private boolean isFavoritesOnly = false;
 
     public MealAdapter(Context context, List<Meal> meals) {
         this.context = context;
         this.meals = meals;
+    }
+
+    public MealAdapter(Context context, List<Meal> meals, boolean isFavoritesOnly) {
+        this.context = context;
+        this.meals = meals;
+        this.isFavoritesOnly = isFavoritesOnly;
     }
 
     @NonNull
@@ -57,10 +64,16 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
 
         mealCard.favoriteBtn.setOnClickListener(v -> {
             Boolean isFav = (Boolean) mealCard.favoriteBtn.getTag();
+            int adapterPosition = mealCard.getAdapterPosition();
+
             if (isFav != null && isFav) {
                 FavoriteManager.removeFavorite(meal.getId());
-                mealCard.favoriteBtn.setIconResource(R.drawable.ic_outline_favorite);
-                mealCard.favoriteBtn.setTag(false);
+                if (isFavoritesOnly) {
+                    removeMeal(adapterPosition);
+                } else {
+                    mealCard.favoriteBtn.setIconResource(R.drawable.ic_outline_favorite);
+                    mealCard.favoriteBtn.setTag(false);
+                }
             } else {
                 FavoriteManager.addFavorite(meal);
                 mealCard.favoriteBtn.setIconResource(R.drawable.ic_favorite);
@@ -89,6 +102,11 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
     @Override
     public int getItemCount() {
         return meals.size();
+    }
+
+    public void removeMeal(int position) {
+        meals.remove(position);
+        notifyItemRemoved(position);
     }
 
     static class MealViewHolder extends RecyclerView.ViewHolder {

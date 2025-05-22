@@ -9,14 +9,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.school.recipeapp.R;
+
+import java.util.List;
+
+import recipe_app.adapter.MealAdapter;
+import recipe_app.api.callbacks.MealsCallback;
+import recipe_app.model.FavoriteManager;
+import recipe_app.model.Meal;
 
 public class FavoriteActivity extends AppCompatActivity {
 
     private Context c;
     private BottomNavigationView bottomNavigation;
+
+    private RecyclerView favoriteMealRV;
+    private MealAdapter mealAdapter;
+    private List<Meal> favoriteMeals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +50,12 @@ public class FavoriteActivity extends AppCompatActivity {
         c = FavoriteActivity.this;
         bottomNavigation = findViewById(R.id.bottomNav);
 
+        // RecyclerView
+        favoriteMealRV = findViewById(R.id.favoriteMealRecyclerView);
+        favoriteMealRV.setLayoutManager(new LinearLayoutManager(c));
+
         handleBottomNavClick();
+        renderFavoriteMeals();
     }
 
     private void handleBottomNavClick() {
@@ -54,5 +72,21 @@ public class FavoriteActivity extends AppCompatActivity {
         });
 
         bottomNavigation.setSelectedItemId(R.id.favoriteNav);
+    }
+
+    private void renderFavoriteMeals() {
+        // Fetch favorite meal from database
+        FavoriteManager.getFavorites(new MealsCallback() {
+            @Override
+            public void onSuccess(List<Meal> meals) {
+                favoriteMeals = meals;
+                mealAdapter = new MealAdapter(c, favoriteMeals, true);
+                favoriteMealRV.setAdapter(mealAdapter);
+            }
+            @Override
+            public void onError(Exception e) {
+
+            }
+        });
     }
 }

@@ -9,6 +9,16 @@
   android:orientation="vertical"
   >
 
+  <!-- Favorite Recycler view -->
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/favoriteMealRecyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:padding="16dp"
+    android:background="@color/white"
+  />
+
   <!-- Bottom navigation menu -->
   <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
